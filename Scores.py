@@ -7,59 +7,52 @@ def intro():
     print "applicant. For each candidate, I will need"
     print "either SAT or SAT scores plus a weighted GPA."
     print
-#calculates gpa scores
+#calculates gpa scores and returns GPA score
 def GPA():
-    overall_gpa = float(raw_input("overall GPA? "))
-    max_gpa = float(raw_input("max GPA? "))
-    transcript_multiplier = float(raw_input("Transcript Multiplier? "))
-    gpa_score = round((overall_gpa / max_gpa) * 100 * transcript_multiplier)
-    print "GPA score = %s" %gpa_score
+    overall_gpa = float(raw_input("    overall GPA? "))
+    max_gpa = float(raw_input("    max GPA? "))
+    transcript_multiplier = float(raw_input("    Transcript Multiplier? "))
+    gpa_score = float((overall_gpa / max_gpa) * 100 * transcript_multiplier)
+    print "    GPA score = %s" % round(gpa_score, 1)
     return gpa_score
-#calculates SAT scores
+#calculates SAT scores and returns exam score
 def SAT():
-    math = int(raw_input("SAT_MATH? "))
-    reading = int(raw_input("SAT critical reading? "))
-    writing = int(raw_input("SAT writing? "))
+    math = float(raw_input("    SAT math? "))
+    reading = float(raw_input("    SAT critical reading? "))
+    writing = float(raw_input("    SAT writing? "))
     exam_score = float(((2 * math) + reading + writing) / 32)
-    print "exam score = %s" % exam_score
+    print "    exam score = %s" % round(exam_score, 1)
     return exam_score
-#calculates ACT scores
+#calculates ACT scores and returns exam score
 def ACT():
-    english = int(raw_input("ACT English? "))
-    math = int(raw_input("ACT Math? "))
-    reading = int(raw_input("ACT Reading? "))
-    science = int(raw_input("ACT Science? "))
-    exam_score = round((english + (2 * math) + reading + science)/1.8, 1)
-    print "exam score = %s" % exam_score
+    english = float(raw_input("    ACT English? "))
+    math = float(raw_input("    ACT Math? "))
+    reading = float(raw_input("    ACT Reading? "))
+    science = float(raw_input("    ACT Science? "))
+    exam_score = float((english + (2 * math) + reading + science)/1.8)
+    print "    exam score = %s" % round(exam_score, 1)
     return exam_score
-#asks user for calculation function
+#prompts exam types and returns exam score, returns GPA scores,
 def scores():
-    test = int(raw_input("do you have 1) SAT scores 2) ACT scores? "))
+    test = int(raw_input("    do you have 1) SAT scores 2) ACT scores? "))
     total_score = 0
     if test == 1:
         exam_score = SAT()
-        gpa_score = GPA()
-        total_score = round(exam_score + gpa_score, 1)
     elif test == 2:
         exam_score = ACT()
-        gpa_score = GPA()
-        total_score = round(exam_score + gpa_score, 1)
     else:
-        print "Please try again!"
+        print "    Please try again!"
         scores()
+    gpa_score = GPA()
+    total_score = round(exam_score + gpa_score, 1)
     return total_score
+#recieves applicant number, computes applicant score and returns applicant scores
+def score_applicant(applicant_number):
+    print "Information for applicant #%s:" %applicant_number
+    total_score = scores()
     print
-#first candidate function
-def first():
-    print "Information for applicant #1"
-    total_score = scores()
     return total_score
-#second candidate function
-def second():
-    "Information for applicant #2"
-    total_score = scores()
-    return total_score
-#compares two canidates
+#recieves two floats representing candidate scores, prints the stronger candidate
 def comparison(first, second):
     print "The First applicant overall score = %s" %first
     print "The Second applicant overall score = %s" %second
@@ -72,6 +65,6 @@ def comparison(first, second):
 ################################################################################
 
 intro()
-first = first()
-second = second()
+first = score_applicant(1)
+second = score_applicant(2)
 comparison(first, second)
