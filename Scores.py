@@ -49,39 +49,29 @@ def scores():
         scores()
     return total_score
     print
-
+#first candidate function
 def first():
-    print "Information for applicant #%s" %1
-    toal_score = scores()
-    return total_score
-
-def second():
-    "Information for applicant #%s" %2
+    print "Information for applicant #1"
     total_score = scores()
     return total_score
-
+#second candidate function
+def second():
+    "Information for applicant #2"
+    total_score = scores()
+    return total_score
 #compares two canidates
-#def comparison():
-#    first = first()
-#    second = second()
-#    print "The First applicant overall score = %s" %first
-#    print "The Second applicant overall score = %s" %second
-#    if first > second:
-#        print "The first applicant seems to be better."
-#    elif second > first:
-#        print "The second applicant seems to be better"
-#    else:
-#        print "The two applicants seem to be equal."
+def comparison(first, second):
+    print "The First applicant overall score = %s" %first
+    print "The Second applicant overall score = %s" %second
+    if first > second:
+        print "The first applicant seems to be better."
+    elif second > first:
+        print "The second applicant seems to be better"
+    else:
+        print "The two applicants seem to be equal."
 ################################################################################
 
 intro()
 first = first()
 second = second()
-print "The First applicant overall score = %s" %first
-print "The Second applicant overall score = %s" %second
-if first > second:
-    print "The first applicant seems to be better."
-elif second > first:
-    print "The second applicant seems to be better"
-else:
-    print "The two applicants seem to be equal."
+comparison(first, second)
